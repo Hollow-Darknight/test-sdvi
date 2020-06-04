@@ -30,6 +30,11 @@ class Pizza
 
     /**
      * @var Collection
+     * @ORM\OneToMany(targetEntity="App\Entity\IngredientPizza", mappedBy="ingredient")
+     * @ORM\JoinColumn(
+     *     name="id_ingredient",
+     *     referencedColumnName="ingredient_id"
+     * )
      */
     private $quantiteIngredients;
 
@@ -105,4 +110,5 @@ class Pizza
     {
         return $this->quantiteIngredients;
     }
+
 }

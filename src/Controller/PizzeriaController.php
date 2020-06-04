@@ -34,15 +34,21 @@ class PizzeriaController extends AbstractController
     }
 
     /**
+     * @param PizzeriaRepository $pizzeriaRepo
      * @param int $pizzeriaId
+     * @return Response
      * @Route(
      *     "/pizzerias/carte-{pizzeriaId}",
      *     requirements={"pizzeriaId": "\d+"}
      * )
-     * @return Response
+     * @throws \Exception
      */
-    public function detailAction($pizzeriaId): Response
+    public function detailAction(PizzeriaRepository $pizzeriaRepo, int $pizzeriaId): Response
     {
-        return new Response("Carte de la pizzéria {$pizzeriaId}");
+        $pizzeria = $pizzeriaRepo->findCartePizzeria($pizzeriaId);
+
+        return $this->render("Pizzeria/carte.html.twig", [
+            "pizzeria" => $pizzeria
+        ]);
     }
 }

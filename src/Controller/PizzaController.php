@@ -38,14 +38,18 @@ class PizzaController extends AbstractController
      *     requirements={"pizzaId": "\d+"}
      * )
      *
+     * @param PizzaRepository $pizzaRepo
      * @param int $pizzaId
      *
      * @return Response
+     * @throws \Exception
      */
-    public function detailAction(int $pizzaId): Response
+    public function detailAction(PizzaRepository $pizzaRepo, int $pizzaId): Response
     {
-        return $this->render("Pizza/detail.html.twig",[
-            'pizza' => $pizzaId
+        $pizza = $pizzaRepo->findPizzaAvecDetailComplet($pizzaId);
+
+        return $this->render("Pizza/detail.html.twig", [
+            'pizza' => $pizza
         ]);
     }
 }

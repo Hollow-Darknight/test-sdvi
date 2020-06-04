@@ -1,9 +1,15 @@
 {% extends "base.html.twig" %}
 
-{% block title %}{% endblock %}
+{% block title %}La pizza {{ pizza.nom }}{% endblock %}
 
-{% block titrePage %}{% endblock %}
+{% block titrePage %}La pizza {{ pizza.nom }}{% endblock %}
 
 {% block body %}
-    Le détail de la pizza sélectionnée
+    Prix de la fabrication : {{ pizza.cout }}
+    Ingrédients :
+    <ul>
+        {% for ingredient in pizza.quantiteIngredients %}
+            <li>{{ ingredient }}</li>
+        {% endfor %}
+    </ul>
 {% endblock %}

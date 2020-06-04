@@ -43,6 +43,13 @@ class Pizzeria
 
     /**
      * @var Collection
+     * @ORM\ManyToMany(
+     *     targetEntity="App\Entity\Pizza"
+     * )
+     * @ORM\JoinColumn(
+     *     name="pizza_id",
+     *     referencedColumnName="id_pizza"
+     * )
      */
     private $pizzas;
 
@@ -135,7 +142,6 @@ class Pizzeria
 
         return $this;
     }
-
     /**
      * @param Pizza $pizza
      * @return Pizzeria
@@ -158,7 +164,7 @@ class Pizzeria
     /**
      * @return Collection
      */
-    public function getPizzas() :Collection
+    public function getPizzas(): Collection
     {
         return $this->pizzas;
     }
